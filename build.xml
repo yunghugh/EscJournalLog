@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project basedir="" name="ESCJournal" default="ESCJournal">
+	<description>ESCJournal</description>
+	<property name="src" location="src" />
+	<property name="dest" location="dest" />
+	<property name="conf" location="conf" />
+	<property name="build" location="classes" />
+	<property name="web.lib.dir" location="lib" />
+	<property file="build.properties" />
+	<path id="classpath">
+		<fileset dir="${web.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+	<target name="clean">
+		<echo>clean</echo>
+		<delete dir="${dest}" />
+		<delete dir="${build}" />
+	</target>
+	<target name="init" depends="clean">
+		<mkdir dir="${dest}/ESCJournal" />
+		<mkdir dir="${build}" />
+	</target>
+	<target name="compile_source" depends="init">
+		<echo>源代码构建</echo>
+		<javac srcdir="${src}" destdir="${build}" debug="on" encoding="UTF-8">
+			<classpath refid="classpath" />
+		</javac>
+	</target>
+	<target description="building ESCJournal project" depends="compile_source" name="ESCJournal">
+		<echo>building ESCJournal project</echo>
+		<copy todir="${dest}/ESCJournal/ESCJournal/classes/">
+			<fileset dir="${basedir}/classes/">
+			</fileset>
+		</copy>
+		<copy todir="${dest}/ESCJournal/ESCJournal/configs/">
+			<fileset dir="${basedir}/configs/">
+			</fileset>
+		</copy>
+		<copy todir="${dest}/ESCJournal/ESCJournal/bin/">
+			<fileset dir="${basedir}/bin/">
+			</fileset>
+		</copy>
+		<copy todir="${dest}/ESCJournal/ESCJournal/lib/">
+			<fileset dir="${basedir}/lib">
+			</fileset>
+		</copy>
+		<copy todir="${dest}/DB_scripts">
+			<fileset dir="${basedir}/DB_scripts" />
+		</copy>
+<!--		
+		<zip destfile="${dest}/ESCJournal.zip">
+			<fileset dir="${dest}/ESCJournal/" />
+		</zip>
+		<zip destfile="${dest}/ESCJournal_DB.zip">
+			<fileset dir="${dest}/DB_scripts" />
+		</zip>
+
+		<delete dir="${dest}/ESCJournal"/>
+		<delete dir="${dest}/DB_scripts"/>
+		-->
+	</target>
+</project>

@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>  
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.dc.esc.journallog.bean.JournalLog" table="esc_trans_log">
+		<composite-id>
+			<key-property name="TERMINALNO" column="TERMINALNO" type="string" />
+			<key-property name="ESCFLOWNO" column="ESCFLOWNO" type="string" />
+		</composite-id>
+		<property name="TRANSSTAMP1" column="TRANSSTAMP1" />
+		<property name="TRANSSTAMP2" column="TRANSSTAMP2" />
+		<property name="TRANSSTAMP3" column="TRANSSTAMP3" />
+		<property name="TRANSSTAMP4" column="TRANSSTAMP4" />
+	</class>
+</hibernate-mapping>  
